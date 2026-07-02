@@ -13,12 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+    - name: Install protoc
+      run: sudo apt-get install -y protobuf-compiler
+    
     - name: Checkout vector
       uses: actions/checkout@v7
       with:
         repository: 'jonasrichard/vector'
         ref: fix/stream-timeout
         token: ${{ github.token }}
-        
+    
+    - uses: Swatinem/rust-cache@v2
+
     - name: Build
       run: cargo build --verbose
