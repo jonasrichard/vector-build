@@ -14,11 +14,11 @@ jobs:
 
     steps:
     - name: Checkout vector
-      uses: actions/checkout@4
+      uses: actions/checkout@7.0.0
       with:
         repository: 'jonasrichard/vector'
         ref: fix/stream-timeout
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ github.token }}
         
     - name: Build
       run: cargo build --verbose
