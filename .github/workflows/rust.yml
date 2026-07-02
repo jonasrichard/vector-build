@@ -1,0 +1,24 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout vector
+      uses: actions/checkout@4
+      with:
+        repository: 'jonasrichard/vector'
+        ref: fix/stream-timeout
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Build
+      run: cargo build --verbose
