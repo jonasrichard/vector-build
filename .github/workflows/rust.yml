@@ -66,4 +66,4 @@ jobs:
           file: Dockerfile
           platforms: ${{ matrix.platform }}
           push: true
-          tags: ${{ env.IMAGE }}:${{ inputs.tag }}-${{ matrix.suffix }}
+          tags: ${{ env.IMAGE }}:batch-fix-${{ matrix.suffix }}
