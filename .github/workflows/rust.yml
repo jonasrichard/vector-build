@@ -47,7 +47,7 @@ jobs:
 
       - name: Build
         working-directory: ./vector-repo
-        run: cargo build --no-default-features --features default-cmake --bin vector
+        run: cargo build --release --no-default-features --features default-cmake --bin vector
 
       - name: Login to GHCR
         uses: docker/login-action@v3
