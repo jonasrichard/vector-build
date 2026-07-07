@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates tzdata libsasl2-2 \
     && rm -rf /var/lib/apt/lists/*
 
-COPY vector-repo/target/debug/vector /usr/bin/vector
+COPY vector-repo/target/release/vector /usr/bin/vector
 
 RUN ["vector", "--version"]
 
