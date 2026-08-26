@@ -1,7 +1,7 @@
 name: Rust
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
 
 env:
   CARGO_TERM_COLOR: always
@@ -44,6 +44,12 @@ jobs:
 
       - uses: Swatinem/rust-cache@v2
 
+      - name: Set version variables
+        working-directory: ./vector-repo
+        run: |
+          echo "VERSION=$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
+          echo "VECTOR_VERSION=$(cargo pkgid --path ./Cargo.toml | sed 's/.*#//')" >> "$GITHUB_ENV"
+
       - name: Build
         working-directory: ./vector-repo
         run: cargo build --release --no-default-features --features default-cmake --bin vector
@@ -65,4 +71,4 @@ jobs:
           file: Dockerfile
           platforms: ${{ matrix.platform }}
           push: true
-          tags: ${{ env.IMAGE }}:batch-fix-${{ matrix.suffix }}
+          tags: ${{ env.IMAGE }}:${{ env.VECTOR_VERSION }}-${{ env.VERSION }}-${{ matrix.suffix }}
