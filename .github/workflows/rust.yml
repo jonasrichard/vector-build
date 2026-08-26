@@ -48,7 +48,7 @@ jobs:
         working-directory: ./vector-repo
         run: |
           echo "VERSION=$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
-          echo "VECTOR_VERSION=$(cargo pkgid | sed 's/.*#//')" >> "$GITHUB_ENV"
+          echo "VECTOR_VERSION=$(cargo pkgid | sed 's/.*#//' | sed 's/@/-/')" >> "$GITHUB_ENV"
 
       - name: Docker rehersal
         run: echo "${{ env.IMAGE }}:${{ env.VECTOR_VERSION }}-${{ env.VERSION }}-${{ matrix.suffix }}"
